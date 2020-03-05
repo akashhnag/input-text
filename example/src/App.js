@@ -11,7 +11,7 @@ export default class App extends Component {
     return (
       <div>
         <React.Fragment>
-        <div style={style}>Password Textbox:<InputBox type='password' getInput={this.getInput} min-length={5}/></div>
+        <div style={style}>Password Textbox:<InputBox type='password' min-length={5}/></div>
         </React.Fragment>
         <React.Fragment>
           <div style={style}>
@@ -23,12 +23,22 @@ export default class App extends Component {
           Email Textbox:<InputBox type='email' getInput={this.getInput} errMsg='incorrect email format'/>
           </div>
         </React.Fragment>
+
+        <React.Fragment>
+          <div style={style}>
+          Testing events:<InputBox type='text' getFocus={this.focusHere}/>
+          </div>
+        </React.Fragment>
       </div>
     )
   }
 
   getInput(data){
     console.log('data',data);
+  }
+
+  focusHere(){
+    console.log('focus idhar bhi');
 
   }
 

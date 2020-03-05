@@ -24,63 +24,62 @@ export default class InputBox extends Component {
     } = this.props
 
     return (
+      // <React.Fragment>
+      //   <input type={type} onChange={this.handleInput} onBlur={this.handleBlur} ></input>
+      //   {this.state.shortPassword ? <p>{this.props.errMsg || 'Invalid Input'}</p>:null}
+      //   {this.state.invalidEmail ? <p>{this.props.errMsg || 'Invalid Input'}</p>:null}
+      // </React.Fragment>
+
       <React.Fragment>
-        <input type={type} onChange={this.handleInput} onBlur={this.handleBlur} ></input>
-        {this.state.shortPassword ? <p>{this.props.errMsg || 'Invalid Input'}</p>:null}
-        {this.state.invalidEmail ? <p>{this.props.errMsg || 'Invalid Input'}</p>:null}
+      <input type={type} onChange={this.handleInput} onBlur={this.handleBlur} onFocus={this.handleFocus}
+      onSelect={this.handleSelect} onInput={this.handleOnInput}></input>
       </React.Fragment>
 
     )
   }
 
   handleInput=(e)=>{
-    this.setState({
-      input:e.target.value
-    } ,()=>{
-      this.props.getInput(this.state.input);
-
-    })
-  }
-
-  handleBlur=()=>{
-    //console.log(this.state.input.length);
-    console.log('props',this.props);
-
-    if(this.props.hasOwnProperty('min-length') && this.state.input.length<this.props['min-length']){
+    if(this.props.hasOwnProperty('getInput')){
       this.setState({
-        shortPassword:true
+        input:e.target.value
+      } ,()=>{
+          this.props.getInput(this.state.input);
       })
     }
 
-    if(this.props.type==='email'){
-
-      if(!this.state.input.match(mailformat)){
-
-          this.setState({
-            invalidEmail:true
-          })
-
-
-      //  this.setState({
-      //    invalidEmail:false
-      //  })
-      // }else
-
-    }
   }
+
+  handleBlur=()=>{
+    if(this.props.hasOwnProperty('getBlur')){
+      if(this.props.hasOwnProperty('min-length') && this.state.input.length<this.props['min-length']){
+        this.setState({
+          shortPassword:true
+        })
+      }
+
+      if(this.props.type==='email'){
+        if(!this.state.input.match(mailformat)){
+            this.setState({
+              invalidEmail:true
+            })
+      }
+    }
+    }
+
+
 }
 
-  handleFocus=()=>{
-    console.log('focus',this.props);
-
+  handleFocus=(e)=>{
+    if(this.props.hasOwnProperty('getFocus')){
+      console.log('focus udhar bhi');
+      this.props.getFocus(e)
+    }
   }
 
-  // static errorMessage=(ob)=>{
-  //   console.log('error message',ob);
-  //   console.log(ob['msg']);
-  //   this.setState({
-  //     errorMessage:ob['msg']
-  //   })
-
-  // }
+  handleOnInput=(e)=>{
+    if(this.props.hasOwnProperty('getOnInput')){
+      console.log('on input');
+      this.props.getFocus(e)
+    }
+  }
 }
