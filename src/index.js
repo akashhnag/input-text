@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-export default class InputBox extends Component {
+export class InputBox extends Component {
   constructor(props){
     super(props);
     this.state={
@@ -24,16 +24,16 @@ export default class InputBox extends Component {
     } = this.props
 
     return (
-      // <React.Fragment>
-      //   <input type={type} onChange={this.handleInput} onBlur={this.handleBlur} ></input>
-      //   {this.state.shortPassword ? <p>{this.props.errMsg || 'Invalid Input'}</p>:null}
-      //   {this.state.invalidEmail ? <p>{this.props.errMsg || 'Invalid Input'}</p>:null}
-      // </React.Fragment>
-
       <React.Fragment>
-      <input type={type} onChange={this.handleInput} onBlur={this.handleBlur} onFocus={this.handleFocus}
-      onSelect={this.handleSelect} onInput={this.handleOnInput}></input>
+        <input type={type} onChange={this.handleInput} onBlur={this.handleBlur} ></input>
+        {this.state.shortPassword ? <p>{this.props.errMsg || 'Invalid Input'}</p>:null}
+        {this.state.invalidEmail ? <p>{this.props.errMsg || 'Invalid Input'}</p>:null}
       </React.Fragment>
+
+      // <React.Fragment>
+      // <input type={type} onChange={this.handleInput} onBlur={this.handleBlur} onFocus={this.handleFocus}
+      // onSelect={this.handleSelect} onInput={this.handleOnInput}></input>
+      // </React.Fragment>
 
     )
   }
@@ -67,7 +67,7 @@ export default class InputBox extends Component {
     }
 
 
-}
+  }
 
   handleFocus=(e)=>{
     if(this.props.hasOwnProperty('getFocus')){
@@ -81,5 +81,22 @@ export default class InputBox extends Component {
       console.log('on input');
       this.props.getFocus(e)
     }
+  }
+}
+
+export class CustomButton extends Component {
+
+  render(){
+    return(
+      <React.Fragment>
+      <button onClick={this.handleClick}>Custom button</button>
+      </React.Fragment>
+    )
+  }
+
+  handleClick=()=>{
+    console.log('clicked');
+    this.props.clickAction();
+
   }
 }

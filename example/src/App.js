@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import InputBox from 'custom-input'
+import {InputBox,CustomButton} from 'custom-input';
 
 export default class App extends Component {
   render () {
@@ -23,14 +23,21 @@ export default class App extends Component {
           Email Textbox:<InputBox type='email' getInput={this.getInput} errMsg='incorrect email format'/>
           </div>
         </React.Fragment>
-
         <React.Fragment>
+          <CustomButton clickAction={this.clickAction}></CustomButton>
+        </React.Fragment>
+        {/* <React.Fragment>
           <div style={style}>
           Testing events:<InputBox type='text' getFocus={this.focusHere}/>
           </div>
-        </React.Fragment>
+        </React.Fragment> */}
       </div>
     )
+  }
+
+  clickAction=()=>{
+    console.log('clicked in child component');
+
   }
 
   getInput(data){
