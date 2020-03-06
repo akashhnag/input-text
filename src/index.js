@@ -11,8 +11,6 @@ export class InputBox extends Component {
       errorMessage:'',
       invalidEmail:false
     }
-
-
   }
   static propTypes = {
     'type': PropTypes.string,
@@ -36,28 +34,20 @@ export class InputBox extends Component {
         {this.state.shortPassword ? <p>{this.props.errMsg || 'Invalid Input'}</p>:null}
         {this.state.invalidEmail ? <p>{this.props.errMsg || 'Invalid Input'}</p>:null}
       </React.Fragment>
-
-      // <React.Fragment>
-      // <input type={type} onChange={this.handleInput} onBlur={this.handleBlur} onFocus={this.handleFocus}
-      // onSelect={this.handleSelect} onInput={this.handleOnInput}></input>
-      // </React.Fragment>
-
     )
   }
 
   handleInput=(e)=>{
-    if(this.props.hasOwnProperty('getInput')){
       this.setState({
         input:e.target.value
       } ,()=>{
+          if(this.props.hasOwnProperty('getInput')){
           this.props.getInput(this.state.input);
+        }
       })
-    }
-
   }
 
   handleBlur=()=>{
-    if(this.props.hasOwnProperty('getBlur')){
       if(this.props.hasOwnProperty('min-length') && this.state.input.length<this.props['min-length']){
         this.setState({
           shortPassword:true
@@ -71,7 +61,7 @@ export class InputBox extends Component {
             })
       }
     }
-    }
+
   }
 
   handleFocus=(e)=>{
