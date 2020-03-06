@@ -10,8 +10,10 @@ export default class App extends Component {
     }
     return (
       <div>
+        <form>
         <React.Fragment>
-        <div style={style}>Password Textbox:<InputBox type='password' min-length={5}/></div>
+        <div style={style}>Password Textbox:<InputBox type='password' min-length={5}
+        placeholder='Password'/></div>
         </React.Fragment>
         <React.Fragment>
           <div style={style}>
@@ -22,10 +24,14 @@ export default class App extends Component {
           <div style={style}>
           Email Textbox:<InputBox type='email' getInput={this.getInput} errMsg='incorrect email format'/>
           </div>
+          <input type='submit' value='Submit'></input>
         </React.Fragment>
         <React.Fragment>
-          <CustomButton clickAction={this.clickAction}></CustomButton>
+          {/* <CustomButton clickAction={this.clickAction}></CustomButton> */}
+          {/* <input type='submit'>Submit</input> */}
         </React.Fragment>
+        </form>
+
         {/* <React.Fragment>
           <div style={style}>
           Testing events:<InputBox type='text' getFocus={this.focusHere}/>
@@ -36,16 +42,14 @@ export default class App extends Component {
   }
 
   clickAction=()=>{
-    console.log('clicked in child component');
 
   }
 
   getInput(data){
-    console.log('data',data);
+
   }
 
   focusHere(){
-    console.log('focus idhar bhi');
 
   }
 

@@ -11,21 +11,28 @@ export class InputBox extends Component {
       errorMessage:'',
       invalidEmail:false
     }
+
+
   }
   static propTypes = {
     'type': PropTypes.string,
     'min-length':PropTypes.number,
-    'errMsg':PropTypes.string
+    'errMsg':PropTypes.string,
+    'placeholder':PropTypes.string
   }
 
   render() {
     const {
-      type
-    } = this.props
+      type,
+      placeholder,
+      required
+    } = this.props;
+
 
     return (
       <React.Fragment>
-        <input type={type} onChange={this.handleInput} onBlur={this.handleBlur} ></input>
+        <input type={type} onChange={this.handleInput} onBlur={this.handleBlur} placeholder={placeholder}
+        required={required}></input>
         {this.state.shortPassword ? <p>{this.props.errMsg || 'Invalid Input'}</p>:null}
         {this.state.invalidEmail ? <p>{this.props.errMsg || 'Invalid Input'}</p>:null}
       </React.Fragment>
@@ -65,27 +72,22 @@ export class InputBox extends Component {
       }
     }
     }
-
-
   }
 
   handleFocus=(e)=>{
     if(this.props.hasOwnProperty('getFocus')){
-      console.log('focus udhar bhi');
       this.props.getFocus(e)
     }
   }
 
   handleOnInput=(e)=>{
     if(this.props.hasOwnProperty('getOnInput')){
-      console.log('on input');
       this.props.getFocus(e)
     }
   }
 }
 
 export class CustomButton extends Component {
-
   render(){
     return(
       <React.Fragment>
@@ -93,9 +95,7 @@ export class CustomButton extends Component {
       </React.Fragment>
     )
   }
-
   handleClick=()=>{
-    console.log('clicked');
     this.props.clickAction();
 
   }
