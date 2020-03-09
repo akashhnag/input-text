@@ -52,9 +52,6 @@ export class InputBox extends Component {
         if(this.state.input.length<this.props['min-length']){
           this.setState({
             shortPassword:true
-          },()=>{
-            console.log('err msg',this.state.shortPassword);
-
           })
         }else{
           this.setState({
