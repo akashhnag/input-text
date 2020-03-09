@@ -48,10 +48,19 @@ export class InputBox extends Component {
   }
 
   handleBlur=()=>{
-      if(this.props.hasOwnProperty('min-length') && this.state.input.length<this.props['min-length']){
-        this.setState({
-          shortPassword:true
-        })
+      if(this.props.hasOwnProperty('min-length')){
+        if(this.state.input.length<this.props['min-length']){
+          this.setState({
+            shortPassword:true
+          },()=>{
+            console.log('err msg',this.state.shortPassword);
+
+          })
+        }else{
+          this.setState({
+            shortPassword:false
+          })
+        }
       }
 
       if(this.props.type==='email'){
@@ -59,6 +68,10 @@ export class InputBox extends Component {
             this.setState({
               invalidEmail:true
             })
+      }else{
+        this.setState({
+          invalidEmail:false
+        })
       }
     }
 
