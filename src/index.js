@@ -28,12 +28,12 @@ export class InputBox extends Component {
 
 
     return (
-      <React.Fragment>
+      <>
         <input type={type} onChange={this.handleInput} onBlur={this.handleBlur} placeholder={placeholder}
         required={required}></input>
-        {this.state.shortPassword ? <p>{this.props.errMsg || 'Invalid Input'}</p>:null}
-        {this.state.invalidEmail ? <p>{this.props.errMsg || 'Invalid Input'}</p>:null}
-      </React.Fragment>
+        {this.state.shortPassword ? <React.Fragment>{this.props.errMsg || 'Invalid Input'}</React.Fragment>:null}
+        {this.state.invalidEmail ? <React.Fragment>{this.props.errMsg || 'Invalid Input'}</React.Fragment>:null}
+      </>
     )
   }
 
