@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import {InputBox,CustomButton} from 'custom-input';
+import {InputBox} from 'custom-input';
 
 export default class App extends Component {
   render () {
@@ -13,18 +13,18 @@ export default class App extends Component {
         <form>
         <React.Fragment>
         <div style={style}>Password Textbox:<InputBox type='password' min-length={5}
-        placeholder='Password'/></div>
+        placeholder='Password' classname='pass'/></div>
         </React.Fragment>
         <React.Fragment>
           <div style={style}>
-          Simple Textbox:<InputBox type='text' getInput={this.getInput}/>
+          Simple Textbox:<InputBox type='text' getInput={this.getInput} classname='text'/>
           </div>
         </React.Fragment>
         <React.Fragment>
           <div style={style}>
           Email Textbox:<InputBox type='email' getInput={this.getInput} errMsg='incorrect email format'/>
           </div>
-          <input type='submit' value='Submit'></input>
+          <input type='submit' value='Submit' className='button'></input>
         </React.Fragment>
         <React.Fragment>
           {/* <CustomButton clickAction={this.clickAction}></CustomButton> */}
@@ -46,6 +46,7 @@ export default class App extends Component {
   }
 
   getInput(data){
+    console.log('data',data);
 
   }
 

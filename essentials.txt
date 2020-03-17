@@ -1,0 +1,18 @@
+1) What should be library needs to be installed
+package.json
+Compilation / Run command -
+
+File naming conventions
+
+
+File
+1. Define the libraries.
+    1. Language Library - React
+    2. Test Library -
+    3. Assertion Library
+    4. Mocking Library
+    5. UI Testing - puppeter
+
+1. Grouping of test cases
+2. Pre and Post test function.
+3. Defining common logic separtely.

@@ -12,6 +12,7 @@ export class InputBox extends Component {
       invalidEmail:false
     }
   }
+
   static propTypes = {
     'type': PropTypes.string,
     'min-length':PropTypes.number,
@@ -23,14 +24,15 @@ export class InputBox extends Component {
     const {
       type,
       placeholder,
-      required
+      required,
+      classname
     } = this.props;
 
 
     return (
       <React.Fragment>
         <input type={type} onChange={this.handleInput} onBlur={this.handleBlur} placeholder={placeholder}
-        required={required}></input>
+        required={required} className={classname}></input>
         {this.state.shortPassword ? <React.Fragment>{this.props.errMsg || 'Invalid Input'}</React.Fragment>:null}
         {this.state.invalidEmail ? <React.Fragment>{this.props.errMsg || 'Invalid Input'}</React.Fragment>:null}
       </React.Fragment>
